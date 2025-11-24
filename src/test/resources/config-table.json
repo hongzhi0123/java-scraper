@@ -37,6 +37,17 @@
             {
                 "key": "inStock",
                 "selector": "span.stock-status"
+            },
+            {
+                "key": "price",
+                "selector": "div.price p",
+                "transformers": [
+                    { "type": "trim" },
+                    { "type": "replace", "pattern": "$", "replacement": "" },
+                    { "type": "replace", "pattern": ",", "replacement": "" },
+                    { "type": "parseFloat" },
+                    { "type": "defaultIfEmpty", "defaultValue": "0.0" }
+                ]                 
             }
         ],
         "subTable": {

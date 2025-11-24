@@ -35,6 +35,7 @@ public class DetailPageScraperTest {
         assertEquals("Powerful laptop for developers.", result.get("description"));
         assertEquals("TechCorp", result.get("manufacturer"));
         assertEquals("", result.get("inStock")); // empty string preserved
+        assertEquals("1299.99", result.get("price"));
 
         // Parse sub-table JSON
         ObjectMapper mapper = new ObjectMapper();
@@ -42,7 +43,9 @@ public class DetailPageScraperTest {
                 result.get("__subTable"), new TypeReference<>() {});
 
         assertEquals(2, subTableData.size());
-        assertEquals("Weight", subTableData.get(0).get("specName"));
-        assertEquals("1.5 kg", subTableData.get(0).get("specValue"));
+
+        var firstRow = subTableData.get(0);
+        assertEquals("Weight", firstRow.get("specName"));
+        assertEquals("1.5 kg", firstRow.get("specValue"));
     }
 }

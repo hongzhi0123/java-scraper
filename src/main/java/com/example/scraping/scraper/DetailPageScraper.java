@@ -2,6 +2,7 @@ package com.example.scraping.scraper;
 
 import com.example.scraping.config.DetailPageDefinition;
 import com.example.scraping.config.FieldDefinition;
+import com.example.scraping.config.TransformerDef;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.jsoup.nodes.Document;
@@ -20,6 +21,13 @@ public class DetailPageScraper {
             for (FieldDefinition field : def.getFields()) {
                 Element el = doc.selectFirst(field.getSelector());
                 String value = (el != null) ? el.text().trim() : "";
+
+                if (field.getTransformers() != null) {
+                    for (TransformerDef t : field.getTransformers()) {
+                        value = t.apply(value);
+                    }
+                }
+
                 data.put(field.getKey(), value);
             }
         }
