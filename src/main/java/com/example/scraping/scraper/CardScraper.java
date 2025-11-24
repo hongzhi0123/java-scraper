@@ -1,6 +1,7 @@
 package com.example.scraping.scraper;
 
 import com.example.scraping.config.FieldDefinition;
+import com.example.scraping.config.TransformerDef;
 import com.example.scraping.config.CardDefinition;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -51,6 +52,11 @@ public class CardScraper {
                 return null;
             }
 
+            if (field.getTransformers() != null) {
+                for (TransformerDef t : field.getTransformers()) {
+                    value = t.apply(value);
+                }
+            }
             record.put(field.getKey(), value);
             if (linkUrl != null) {
                 // Store URL under key (e.g., "productUrl" if key="product")

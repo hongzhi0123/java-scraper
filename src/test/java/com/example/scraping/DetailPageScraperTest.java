@@ -1,17 +1,6 @@
 package com.example.scraping;
 
-import com.example.scraping.config.ColumnDefinition;
-import com.example.scraping.config.DetailPageDefinition;
-import com.example.scraping.config.FieldDefinition;
-import com.example.scraping.config.ScrapeConfig;
-import com.example.scraping.config.TableDefinition;
-import com.example.scraping.scraper.DetailPageScraper;
-import com.example.scraping.utils.TestConfigLoader;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -19,7 +8,15 @@ import java.nio.file.Paths;
 import java.util.List;
 import java.util.Map;
 
-import static org.junit.jupiter.api.Assertions.*;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.junit.jupiter.api.Test;
+
+import com.example.scraping.config.ScrapeConfig;
+import com.example.scraping.scraper.DetailPageScraper;
+import com.example.scraping.utils.TestConfigLoader;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class DetailPageScraperTest {
 

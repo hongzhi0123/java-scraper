@@ -2,6 +2,8 @@ package com.example.scraping.scraper;
 
 import com.example.scraping.config.ColumnDefinition;
 import com.example.scraping.config.TableDefinition;
+import com.example.scraping.config.TransformerDef;
+
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
@@ -67,7 +69,8 @@ public class TableScraper {
                     }
                 }
                 // Optionally: warn if not found
-                // if (resolvedIndex == null) System.err.println("⚠️ Header '" + targetHeader + "' not found");
+                // if (resolvedIndex == null) System.err.println("⚠️ Header '" + targetHeader +
+                // "' not found");
             }
 
             // Fallback to explicit index (supports negative)
@@ -80,7 +83,7 @@ public class TableScraper {
                 // Put empty string (your preference)
                 record.put(col.getKey(), "");
                 continue;
-            }            
+            }
 
             // Step 2: Extract cell content
             Element cell = cells.get(resolvedIndex);
@@ -100,12 +103,18 @@ public class TableScraper {
                 if (col.isIsDetailLink()) {
                     Element link = cell.selectFirst("a[href]");
                     if (link != null) {
-                        value = link.text().trim();     // display text
+                        value = link.text().trim(); // display text
                         linkUrl = link.attr("abs:href"); // detail URL
                     }
                 }
             }
 
+            if (col.getTransformers() != null) {
+                for (TransformerDef t : col.getTransformers()) {
+                    value = t.apply(value);
+                }
+            }
+            
             record.put(col.getKey(), value);
             if (linkUrl != null) {
                 record.put(col.getKey() + "Url", linkUrl);

@@ -1,0 +1,60 @@
+{
+  "entranceUrl": "file:src/test/resources/fixtures/transform.html",
+  "mainCard": {
+    "itemSelector": "div.product",
+    "fields": [
+      {
+        "key": "type",
+        "selector": "span.sku",
+        "transformers": [
+          { "type": "trim" },
+          { "type": "regexExtract", "pattern": "SKU:\\s*(\\w+)", "group": 1 }
+        ]
+      },
+      {
+        "key": "id",
+        "selector": "span.sku",
+        "transformers": [
+          { "type": "trim" },
+          { "type": "regexExtract", "pattern": "SKU:\\s*(\\w+)-(\\d+)", "group": 2 }
+        ]
+      },      
+      {
+        "key": "price",
+        "selector": "span.price",
+        "transformers": [
+          { "type": "trim" },
+          { "type": "replace", "pattern": "$", "replacement": "" },
+          { "type": "replace", "pattern": ",", "replacement": "" },
+          { "type": "parseFloat" },
+          { "type": "defaultIfEmpty", "defaultValue": "0.0" }
+        ]
+      },
+      {
+        "key": "tags",
+        "selector": "div.tags",
+        "transformers": [
+          { "type": "split", "delimiter": ",", "index": 0 },
+          { "type": "trim" }
+        ]
+      },
+      {
+        "key": "titleSlug",
+        "selector": "h3",
+        "transformers": [
+          { "type": "trim" },
+          { "type": "lowercase" },
+          { "type": "replace", "pattern": " ", "replacement": "-" },
+          { "type": "substring", "start": 0, "end": 20 }
+        ]
+      },
+      {
+        "key": "category",
+        "selector": "span.cat",
+        "transformers": [
+          { "type": "defaultIfEmpty", "defaultValue": "Uncategorized" }
+        ]
+      }
+    ]
+  }
+}

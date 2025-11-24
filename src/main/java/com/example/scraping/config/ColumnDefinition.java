@@ -1,5 +1,7 @@
 package com.example.scraping.config;
 
+import java.util.List;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class ColumnDefinition {
@@ -9,6 +11,7 @@ public class ColumnDefinition {
     private String selector;
     @JsonProperty("isDetailLink")
     private boolean isDetailLink = false;
+    private List<TransformerDef> transformers;
 
     // getters & setters
     public String getKey() { return key; }
@@ -25,4 +28,7 @@ public class ColumnDefinition {
 
     public boolean isIsDetailLink() { return isDetailLink; }
     public void setIsDetailLink(boolean isDetailLink) { this.isDetailLink = isDetailLink; }
+
+    public List<TransformerDef> getTransformers() { return transformers; }
+    public void setTransformers(List<TransformerDef> transformers) { this.transformers = transformers; }
 }
