@@ -13,6 +13,6 @@ public class ReplaceTransformer extends TransformerDef {
     public String apply(String input) {
         if (input == null)
             return "";
-        return input.replace(pattern, replacement);
+        return input.replaceAll(pattern, replacement);
     }
 }

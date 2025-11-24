@@ -31,6 +31,16 @@
                 "key": "category",
                 "selector": "div.card-body li:has(strong:contains(Category))",
                 "optional": true
+            },
+            {
+                "key": "roles",
+                "selector": "div.modal-body h5:contains(Deutschland) + p",
+                "rawHtml": true,
+                "transformers": [
+                    { "type": "replace", "pattern": "(&nbsp;)+", "replacement": " " },
+                    { "type": "replace", "pattern": "<br>", "replacement": "," },
+                    { "type": "trim" }
+                ]
             }
         ]
     },

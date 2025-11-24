@@ -20,7 +20,7 @@ public class DetailPageScraper {
         if (def.getFields() != null) {
             for (FieldDefinition field : def.getFields()) {
                 Element el = doc.selectFirst(field.getSelector());
-                String value = (el != null) ? el.text().trim() : "";
+                String value = (el != null) ? (field.isRawHtml() ? el.html() : el.text().trim()) : "";
 
                 if (field.getTransformers() != null) {
                     for (TransformerDef t : field.getTransformers()) {

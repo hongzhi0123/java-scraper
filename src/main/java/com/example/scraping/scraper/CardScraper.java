@@ -35,7 +35,7 @@ public class CardScraper {
             Element el = item.selectFirst(field.getSelector());
             if (el != null) {
                 // Extract text by default
-                value = el.text().trim();
+                value = field.isRawHtml() ? el.html() : el.text().trim();
 
                 // Special: if this field is meant to be a detail link
                 // (we repurpose `optional` flag or add new `isDetailLink` — but let's extend
