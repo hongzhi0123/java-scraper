@@ -29,6 +29,7 @@ public class TableScraper {
         }
 
         return rows.stream()
+                .filter(row -> RowFilter.shouldKeepRow(row, tableDef.getRowFilter()))
                 .map(row -> parseRow(row, tableDef, headers))
                 .filter(Objects::nonNull)
                 .collect(Collectors.toList());
@@ -114,7 +115,7 @@ public class TableScraper {
                     value = t.apply(value);
                 }
             }
-            
+
             record.put(col.getKey(), value);
             if (linkUrl != null) {
                 record.put(col.getKey() + "Url", linkUrl);

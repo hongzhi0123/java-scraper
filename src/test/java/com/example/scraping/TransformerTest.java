@@ -8,9 +8,9 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 
 import com.example.scraping.config.TransformerDef;
-import com.example.scraping.config.transformer.ParseFloatTransformer;
-import com.example.scraping.config.transformer.ReplaceTransformer;
-import com.example.scraping.config.transformer.TrimTransformer;
+import com.example.scraping.scraper.transformer.ParseFloatTransformer;
+import com.example.scraping.scraper.transformer.ReplaceTransformer;
+import com.example.scraping.scraper.transformer.TrimTransformer;
 
 public class TransformerTest {
     @Test

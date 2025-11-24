@@ -8,6 +8,7 @@ public class TableDefinition {
     private String selector;
     @JsonProperty("hasHeader")
     private boolean hasHeader = true;
+    private RowFilterDefinition rowFilter;
     private List<ColumnDefinition> columns;
 
     public String getSelector() { return selector; }
@@ -15,6 +16,9 @@ public class TableDefinition {
 
     public boolean isHasHeader() { return hasHeader; }
     public void setHasHeader(boolean hasHeader) { this.hasHeader = hasHeader; }
+
+    public RowFilterDefinition getRowFilter() { return rowFilter; }
+    public void setRowFilter(RowFilterDefinition rowFilter) { this.rowFilter = rowFilter; }    
 
     public List<ColumnDefinition> getColumns() { return columns; }
     public void setColumns(List<ColumnDefinition> columns) { this.columns = columns; }

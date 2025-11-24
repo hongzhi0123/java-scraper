@@ -19,6 +19,7 @@ public class CardScraper {
         }
 
         return items.stream()
+                .filter(row -> RowFilter.shouldKeepRow(row, cardDef.getRowFilter()))
                 .map(item -> parseItem(item, cardDef.getFields()))
                 .filter(Objects::nonNull)
                 .collect(Collectors.toList());
