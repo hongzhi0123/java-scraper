@@ -23,10 +23,16 @@ public class ScrapeEngine {
         String currentUrl = config.getEntranceUrl();
 
         while (currentUrl != null) {
-            Document doc = Jsoup.connect(currentUrl)
-                    .userAgent("Mozilla/5.0 (compatible; ConfigScraper/1.0)")
+            Document doc;
+            try {
+                doc = Jsoup.connect(currentUrl)
+                    .userAgent("Mozilla/5.0 (Windows NT 10.0; Win64; x64)")
                     .timeout(10000)
                     .get();
+            } catch (IOException e) {
+                System.err.println("❌ Failed to fetch page: " + currentUrl + " — " + e.getMessage());
+                break;
+            }
 
             // Scrape main table
             List<Map<String, String>> items;

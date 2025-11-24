@@ -14,7 +14,7 @@ public class Main {
         try {
             // Load config
             ObjectMapper mapper = new ObjectMapper();
-            ScrapeConfig config = mapper.readValue(new File("config.json"), ScrapeConfig.class);
+            ScrapeConfig config = mapper.readValue(new File(args[0]), ScrapeConfig.class);
 
             // Run scraper
             ScrapeEngine engine = new ScrapeEngine(config);
