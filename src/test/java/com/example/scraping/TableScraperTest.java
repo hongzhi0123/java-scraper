@@ -27,26 +27,8 @@ public class TableScraperTest {
         Document doc = Jsoup.parse(html);
         doc.setBaseUri("https://example.com"); // critical for abs:href
 
-        // Load config from src/test/resources/config.json
-        ScrapeConfig config = TestConfigLoader.loadConfig("config.json");
-
-        // TableDefinition def = new TableDefinition();
-        // def.setSelector("table.product-list");
-        // def.setHasHeader(false);
-
-        // ColumnDefinition idCol = new ColumnDefinition();
-        // idCol.setKey("id"); idCol.setIndex(0);
-
-        // ColumnDefinition nameCol = new ColumnDefinition();
-        // nameCol.setKey("name"); nameCol.setIndex(1); nameCol.setSelector("a");
-
-        // ColumnDefinition priceCol = new ColumnDefinition();
-        // priceCol.setKey("price"); priceCol.setIndex(-1); // last column
-
-        // ColumnDefinition linkCol = new ColumnDefinition();
-        // linkCol.setKey("product"); linkCol.setIndex(1); linkCol.setIsDetailLink(true);
-
-        // def.setColumns(List.of(idCol, nameCol, priceCol, linkCol));
+        // Load config from src/test/resources/config-table.json
+        ScrapeConfig config = TestConfigLoader.loadConfig("config-table.json");
 
         TableScraper scraper = new TableScraper();
         List<Map<String, String>> results = scraper.scrapeTable(doc, config.getMainTable());

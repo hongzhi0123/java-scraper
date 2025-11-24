@@ -1,0 +1,41 @@
+{
+    "entranceUrl": "file:src/test/resources/fixtures/cards.html",
+    "mainCard": {
+        "itemSelector": "div.product-card",
+        "fields": [
+            {
+                "key": "id",
+                "selector": "span.id",
+                "optional": false
+            },
+            {
+                "key": "name",
+                "selector": "h3.title a"
+            },
+            {
+                "key": "nameUrl", // ← convention: ends with "Url" → extract href
+                "selector": "h3.title a"
+            },
+            {
+                "key": "price",
+                "selector": "div.price"
+            },
+            {
+                "key": "category",
+                "selector": "span.category",
+                "optional": true
+            }
+        ]
+    },
+    "detailPage": {
+        "fields": [
+            {
+                "key": "description",
+                "selector": "p.description"
+            }
+        ]
+    },
+    "pagination": {
+        "nextButtonSelector": "a.next"
+    }
+}

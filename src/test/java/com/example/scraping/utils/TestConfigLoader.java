@@ -1,6 +1,7 @@
 package com.example.scraping.utils;
 
 import com.example.scraping.config.ScrapeConfig;
+import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.IOException;
@@ -10,6 +11,8 @@ public class TestConfigLoader {
     private static final ObjectMapper mapper = new ObjectMapper();
 
     public static ScrapeConfig loadConfig(String resourcePath) throws IOException {
+        mapper.enable(JsonParser.Feature.ALLOW_COMMENTS);
+        
         try (InputStream is = TestConfigLoader.class.getClassLoader()
                 .getResourceAsStream(resourcePath)) {
             if (is == null) {

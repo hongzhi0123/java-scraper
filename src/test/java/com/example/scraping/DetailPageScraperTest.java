@@ -29,32 +29,8 @@ public class DetailPageScraperTest {
                 Paths.get("src/test/resources/fixtures/detail_p001.html")));
         Document doc = Jsoup.parse(html);
 
-        // Load config from src/test/resources/config.json
-        ScrapeConfig config = TestConfigLoader.loadConfig("config.json");
-
-        // DetailPageDefinition def = new DetailPageDefinition();
-
-        // FieldDefinition desc = new FieldDefinition();
-        // desc.setKey("description"); desc.setSelector("div#description p");
-
-        // FieldDefinition manu = new FieldDefinition();
-        // manu.setKey("manufacturer"); manu.setSelector("dl.info dt:contains(Made by) + dd");
-
-        // FieldDefinition stock = new FieldDefinition();
-        // stock.setKey("inStock"); stock.setSelector("span.stock-status");
-
-        // def.setFields(List.of(desc, manu, stock));
-
-        // // Sub-table
-        // TableDefinition subTable = new TableDefinition();
-        // subTable.setSelector("table.specs");
-        // subTable.setHasHeader(true);
-
-        // var propCol = new ColumnDefinition(); propCol.setKey("specName"); propCol.setHeaderText("Property");
-        // var valCol = new ColumnDefinition(); valCol.setKey("specValue"); valCol.setHeaderText("Value");
-        // subTable.setColumns(List.of(propCol, valCol));
-
-        // def.setSubTable(subTable);
+        // Load config from src/test/resources/config-table.json
+        ScrapeConfig config = TestConfigLoader.loadConfig("config-table.json");
 
         DetailPageScraper scraper = new DetailPageScraper();
         Map<String, String> result = scraper.scrapeDetailPage(doc, config.getDetailPage());

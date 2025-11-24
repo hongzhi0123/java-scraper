@@ -29,7 +29,15 @@ public class ScrapeEngine {
                     .get();
 
             // Scrape main table
-            List<Map<String, String>> items = tableScraper.scrapeTable(doc, config.getMainTable());
+            List<Map<String, String>> items;
+            if (config.getMainTable() != null) {
+                items = tableScraper.scrapeTable(doc, config.getMainTable());
+            } else if (config.getMainCard() != null) {
+                CardScraper cardScraper = new CardScraper();
+                items = cardScraper.scrapeCards(doc, config.getMainCard());
+            } else {
+                throw new IllegalStateException("No mainTable or mainCard defined in config");
+            }
 
             // Scrape detail pages (if defined)
             if (config.getDetailPage() != null) {
