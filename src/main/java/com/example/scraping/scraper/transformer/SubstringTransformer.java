@@ -2,14 +2,12 @@ package com.example.scraping.scraper.transformer;
 
 import com.example.scraping.config.TransformerDef;
 
+import lombok.Data;
+
+@Data
 public class SubstringTransformer extends TransformerDef {
     private Integer start; // inclusive
     private Integer end;   // exclusive (optional)
-
-    public Integer getStart() { return start; }
-    public void setStart(Integer start) { this.start = start; }
-    public Integer getEnd() { return end; }
-    public void setEnd(Integer end) { this.end = end; }
 
     @Override
     public String apply(String input) {

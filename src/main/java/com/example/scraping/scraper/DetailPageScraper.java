@@ -27,7 +27,6 @@ public class DetailPageScraper {
                         value = t.apply(value);
                     }
                 }
-
                 data.put(field.getKey(), value);
             }
         }

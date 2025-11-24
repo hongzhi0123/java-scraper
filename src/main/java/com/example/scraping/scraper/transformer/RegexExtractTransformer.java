@@ -5,14 +5,12 @@ import java.util.regex.Pattern;
 
 import com.example.scraping.config.TransformerDef;
 
+import lombok.Data;
+
+@Data
 public class RegexExtractTransformer extends TransformerDef {
     private String pattern;
     private int group = 1; // capture group to extract
-
-    public String getPattern() { return pattern; }
-    public void setPattern(String pattern) { this.pattern = pattern; }
-    public int getGroup() { return group; }
-    public void setGroup(int group) { this.group = group; }
 
     @Override
     public String apply(String input) {

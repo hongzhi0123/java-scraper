@@ -2,26 +2,12 @@ package com.example.scraping.scraper.transformer;
 
 import com.example.scraping.config.TransformerDef;
 
+import lombok.Data;
+
+@Data
 public class ReplaceTransformer extends TransformerDef {
     private String pattern;
     private String replacement;
-
-    // getters & setters (required for Jackson)
-    public String getPattern() {
-        return pattern;
-    }
-
-    public void setPattern(String pattern) {
-        this.pattern = pattern;
-    }
-
-    public String getReplacement() {
-        return replacement;
-    }
-
-    public void setReplacement(String replacement) {
-        this.replacement = replacement;
-    }
 
     @Override
     public String apply(String input) {

@@ -2,13 +2,12 @@ package com.example.scraping.scraper.transformer;
 
 import com.example.scraping.config.TransformerDef;
 
+import lombok.Data;
+
+@Data
 public class SuffixTransformer extends TransformerDef {
     private String delimiter = "-";
 
-    // getters/setters (required for Jackson property binding)
-    public String getDelimiter() { return delimiter; }
-    public void setDelimiter(String delimiter) { this.delimiter = delimiter; }
-    
     @Override
     public String apply(String input) {
         if (input == null)
