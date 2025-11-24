@@ -10,4 +10,5 @@ public class ScrapeConfig {
     private DetailPageDefinition detailPage;
     private PaginationDefinition pagination;
     private RateLimitConfig rateLimit;
+    private CacheConfig cache;
 }

@@ -4,6 +4,11 @@
         "requestsPerMinute": 12,
         "randomize": true
     },    
+    "cache": {
+        "enabled": true,
+        "ttlMinutes": 120,
+        "cacheDir": "target/cache"
+    },
     "mainCard": {
         "itemSelector": "div.product-card",
         "fields": [

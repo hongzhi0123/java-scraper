@@ -1,5 +1,9 @@
 package com.example.scraping.scraper;
 
+import com.example.scraping.cache.CachedJsoup;
+import com.example.scraping.cache.FileBasedCache;
+import com.example.scraping.cache.NoOpCache;
+import com.example.scraping.cache.ResponseCache;
 import com.example.scraping.config.ScrapeConfig;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -10,12 +14,18 @@ import java.util.stream.Collectors;
 
 public class ScrapeEngine {
     private final ScrapeConfig config;
+    private final ResponseCache cache;
+    private final CachedJsoup cachedJsoup;
     private final TableScraper tableScraper = new TableScraper();
     private final DetailPageScraper detailScraper = new DetailPageScraper();
     private final PaginationHandler paginationHandler = new PaginationHandler();
 
     public ScrapeEngine(ScrapeConfig config) {
         this.config = config;
+        this.cache = config.getCache() != null && config.getCache().isEnabled()
+                ? new FileBasedCache(config.getCache())
+                : new NoOpCache();
+        this.cachedJsoup = new CachedJsoup(cache, config.getRateLimit());
     }
 
     public List<Map<String, String>> run() throws IOException {
@@ -23,8 +33,9 @@ public class ScrapeEngine {
         String currentUrl = config.getEntranceUrl();
 
         while (currentUrl != null) {
-            Document doc;
-            applyRateLimit();
+            // ✅ Use cached fetch
+            Document doc = cachedJsoup.getDocument(currentUrl);
+            
             try {
                 doc = Jsoup.connect(currentUrl)
                         .userAgent("Mozilla/5.0 (Windows NT 10.0; Win64; x64)")
@@ -82,10 +93,7 @@ public class ScrapeEngine {
         }
 
         try {
-            Document detailDoc = Jsoup.connect(detailUrl)
-                    .userAgent("Mozilla/5.0")
-                    .timeout(10000)
-                    .get();
+            Document detailDoc =  cachedJsoup.getDocument(detailUrl);
 
             Map<String, String> detailData = detailScraper.scrapeDetailPage(detailDoc, config.getDetailPage());
             Map<String, String> merged = new LinkedHashMap<>(item);
@@ -95,24 +103,6 @@ public class ScrapeEngine {
         } catch (Exception e) {
             System.err.println("⚠️ Failed to scrape detail page: " + detailUrl + " — " + e.getMessage());
             return item; // keep main data
-        }
-    }
-
-    private void applyRateLimit() {
-        if (config.getRateLimit() == null)
-            return;
-
-        int rpm = config.getRateLimit().getRequestsPerMinute();
-        if (rpm <= 0)
-            return;
-
-        long baseDelay = 60_000L / rpm; // ms per request
-        long jitter = config.getRateLimit().isRandomize() ? (long) (baseDelay * 0.5 * Math.random()) : 0L;
-
-        try {
-            Thread.sleep(baseDelay + jitter);
-        } catch (InterruptedException e) {
-            Thread.currentThread().interrupt();
         }
     }
 }
