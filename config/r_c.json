@@ -1,0 +1,41 @@
+{
+    "entranceUrl": "http://127.0.0.1:5500/sites/regafi/credit/page1.html",
+    "mainTable": {
+        "selector": ".table",
+        "hasHeader": true,
+        "columns": [
+            {
+                "headerText": "REGAFI identifier",
+                "key": "id",
+                "isDetailLink": true
+            },
+            {
+                "headerText": "Name",
+                "key": "name"
+            },
+            {
+                "headerText": "National identifier (SIREN number for French entities)",
+                "key": "natId"
+            },
+            {
+                "headerText": "Bank code (CIB)",
+                "key": "bankCode"
+            },
+            {
+                "headerText": "Category",
+                "key": "category"
+            },
+            {
+                "headerText": "Status",
+                "key": "status"
+            },
+            {
+                "headerText": "Category",
+                "key": "category"
+            }
+        ]
+    },
+    "pagination": {
+        "nextButtonSelector": "a:contains(Next page)"
+    }
+}

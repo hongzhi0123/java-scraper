@@ -1,5 +1,9 @@
 {
     "entranceUrl": "file:src/test/resources/fixtures/cards.html",
+    "rateLimit": {
+        "requestsPerMinute": 12,
+        "randomize": true
+    },    
     "mainCard": {
         "itemSelector": "div.product-card",
         "fields": [

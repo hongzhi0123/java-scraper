@@ -1,0 +1,32 @@
+{
+    "entranceUrl": "http://127.0.0.1:5500/sites/bafin/company/page1.html",
+    "mainTable": {
+        "selector": "#institut",
+        "hasHeader": true,
+        "columns": [
+            { "headerText": "Unternehmen", "key": "name", "isDetailLink": true },
+            { "headerText": "Gattung", "key": "gattung" }
+        ]
+    },
+    "detailPage": {
+        "fields": [
+            { "key": "name", "selector": "div#wrapperContent div#content p:nth-of-type(1)" },
+            { "key": "address", "selector": "div#wrapperContent div#content p:nth-of-type(2)" },
+            { "key": "bafinId", "selector": "div#wrapperContent div#content dl.docData:nth-of-type(2) dd:nth-of-type(1)" },
+            { "key": "id", "selector": "div#wrapperContent div#content dl.docData:nth-of-type(2) dd:nth-of-type(2)" },
+            { "key": "regNr", "selector": "div#wrapperContent div#content dl.docData:nth-of-type(2) dd:nth-of-type(3)" }
+        ],
+        "subTable": {
+            "selector": "#erlaubnis",
+            "hasHeader": true,
+            "columns": [
+                { "index": 0, "key": "permission" },
+                { "index": 1, "key": "notBefore" }, 
+                { "index": 2, "key": "notAfter"},
+                { "index": 3, "key": "reason" }
+        ]}
+    },
+    "pagination": {
+        "nextButtonSelector": "a:contains(vor)"
+    }
+}

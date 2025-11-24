@@ -1,0 +1,62 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "bafin credit",
+            "request": "launch",
+            "mainClass": "com.example.scraping.Main",
+            "projectName": "configurable-scraper",
+            "args": "config/b_c.json",
+            "vmArgs": "-Djdk.httpclient.HttpClient.log=errors,requests,headers,frames[:control:data:window:all],content,ssl,trace,channel,all"
+        },
+        {
+            "type": "java",
+            "name": "bafin payment",
+            "request": "launch",
+            "mainClass": "com.example.scraping.Main",
+            "projectName": "configurable-scraper",
+            "args": "config/b_p.json",
+            "vmArgs": "-Djdk.httpclient.HttpClient.log=errors,requests,headers,frames[:control:data:window:all],content,ssl,trace,channel,all"
+        },
+        {
+            "type": "java",
+            "name": "regafi pis",
+            "request": "launch",
+            "mainClass": "com.example.scraping.Main",
+            "projectName": "configurable-scraper",
+            "args": "config/r_p.json",
+            "vmArgs": "-Djdk.httpclient.HttpClient.log=errors,requests,headers,frames[:control:data:window:all],content,ssl,trace,channel,all"
+        },
+        {
+            "type": "java",
+            "name": "regafi ais",
+            "request": "launch",
+            "mainClass": "com.example.scraping.Main",
+            "projectName": "configurable-scraper",
+            "args": "config/r_a.json",
+            "vmArgs": "-Djdk.httpclient.HttpClient.log=errors,requests,headers,frames[:control:data:window:all],content,ssl,trace,channel,all"
+        },
+        {
+            "type": "java",
+            "name": "regafi credit",
+            "request": "launch",
+            "mainClass": "com.example.scraping.Main",
+            "projectName": "configurable-scraper",
+            "args": "config/r_c.json",
+            "vmArgs": "-Djdk.httpclient.HttpClient.log=errors,requests,headers,frames[:control:data:window:all],content,ssl,trace,channel,all"
+        },
+        {
+            "type": "java",
+            "name": "fma payment",
+            "request": "launch",
+            "mainClass": "com.example.scraping.Main",
+            "projectName": "configurable-scraper",
+            "args": "config/f_p.json",
+            "vmArgs": "-Djdk.httpclient.HttpClient.log=errors,requests,headers,frames[:control:data:window:all],content,ssl,trace,channel,all"
+        }       
+    ]
+}

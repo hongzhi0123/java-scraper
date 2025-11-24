@@ -1,0 +1,37 @@
+{
+    "entranceUrl": "http://127.0.0.1:5500/sites/bafin/zag/page1.html",
+    "mainTable": {
+        "selector": "#zahlinst",
+        "hasHeader": true,
+        "columns": [
+            { "headerText": "Gefundene ZAG-Institute:", "key": "name", "isDetailLink": true }
+        ]
+    },
+    "detailPage": {
+        "fields": [
+            { 
+                "key": "address", 
+                "selector": "div#wrapperContent div#content p:nth-of-type(1)"
+            },
+            { 
+                "key": "id", 
+                "selector": "div#wrapperContent div#content p:nth-of-type(2)",
+                "transformers": [
+                    { "type": "replace", "pattern": "ID", "replacement": "" },
+                    { "type": "trim" }
+                ]
+            }
+        ],
+        "subTable": {
+            "selector": "#erlaubnis",
+            "hasHeader": true,
+            "columns": [
+                { "index": 0, "key": "permission" },
+                { "index": 1, "key": "notBefore" }, 
+                { "index": 2, "key": "notAfter"}
+        ]}
+    },
+    "pagination": {
+        "nextButtonSelector": "a:contains(vor)"
+    }
+}

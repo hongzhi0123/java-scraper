@@ -1,5 +1,9 @@
 {
     "entranceUrl": "file:src/test/resources/fixtures/entrance.html",
+    "rateLimit": {
+        "requestsPerMinute": 12,
+        "randomize": true
+    },
     "mainTable": {
         "selector": "table.product-list",
         "hasHeader": false,

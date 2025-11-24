@@ -1,0 +1,40 @@
+{
+    "entranceUrl": "http://127.0.0.1:5500/sites/fma/payment/page1.html",
+    "mainCard": {
+        "itemSelector": "div.company-details-wrap",
+        "fields": [
+            {
+                "key": "name",
+                "selector": "div.card-header h3 button span"
+            },
+            {
+                "key": "id",
+                "selector": "div.card-body li:has(strong:contains(Legal Identifiers:)) li:has(strong:contains(Institute code))",
+                "transformers": [
+                    { "type": "replace", "pattern": "Institute code : ", "replacement": "" },
+                    { "type": "trim" }
+                ]
+            },
+            {
+                "key": "regNr",
+                "selector": "div.card-body li:has(strong:contains(Legal Identifiers:)) li:has(strong:contains(Commercial register number))",
+                "transformers": [
+                    { "type": "replace", "pattern": "Commercial register number : ", "replacement": "" },
+                    { "type": "trim" }
+                ]                
+            },
+            {
+                "key": "address",
+                "selector": "div.card-body li:has(strong:contains(Address))"
+            },
+            {
+                "key": "category",
+                "selector": "div.card-body li:has(strong:contains(Category))",
+                "optional": true
+            }
+        ]
+    },
+    "pagination": {
+        "nextButtonSelector": "a.next"
+    }
+}
