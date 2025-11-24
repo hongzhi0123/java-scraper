@@ -24,11 +24,12 @@ public class ScrapeEngine {
 
         while (currentUrl != null) {
             Document doc;
+            applyRateLimit();
             try {
                 doc = Jsoup.connect(currentUrl)
-                    .userAgent("Mozilla/5.0 (Windows NT 10.0; Win64; x64)")
-                    .timeout(10000)
-                    .get();
+                        .userAgent("Mozilla/5.0 (Windows NT 10.0; Win64; x64)")
+                        .timeout(10000)
+                        .get();
             } catch (IOException e) {
                 System.err.println("❌ Failed to fetch page: " + currentUrl + " — " + e.getMessage());
                 break;
@@ -94,6 +95,24 @@ public class ScrapeEngine {
         } catch (Exception e) {
             System.err.println("⚠️ Failed to scrape detail page: " + detailUrl + " — " + e.getMessage());
             return item; // keep main data
+        }
+    }
+
+    private void applyRateLimit() {
+        if (config.getRateLimit() == null)
+            return;
+
+        int rpm = config.getRateLimit().getRequestsPerMinute();
+        if (rpm <= 0)
+            return;
+
+        long baseDelay = 60_000L / rpm; // ms per request
+        long jitter = config.getRateLimit().isRandomize() ? (long) (baseDelay * 0.5 * Math.random()) : 0L;
+
+        try {
+            Thread.sleep(baseDelay + jitter);
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
         }
     }
 }

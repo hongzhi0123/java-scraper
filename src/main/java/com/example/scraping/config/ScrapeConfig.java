@@ -9,4 +9,5 @@ public class ScrapeConfig {
     private CardDefinition mainCard;  // ← new: alternative to mainTable
     private DetailPageDefinition detailPage;
     private PaginationDefinition pagination;
+    private RateLimitConfig rateLimit;
 }
