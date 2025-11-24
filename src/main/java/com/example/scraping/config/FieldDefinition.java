@@ -1,0 +1,16 @@
+package com.example.scraping.config;
+
+public class FieldDefinition {
+    private String key;
+    private String selector;
+    private boolean optional = true;
+
+    public String getKey() { return key; }
+    public void setKey(String key) { this.key = key; }
+
+    public String getSelector() { return selector; }
+    public void setSelector(String selector) { this.selector = selector; }
+
+    public boolean isOptional() { return optional; }
+    public void setOptional(boolean optional) { this.optional = optional; }
+}

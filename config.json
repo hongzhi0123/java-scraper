@@ -1,0 +1,61 @@
+{
+    "entranceUrl": "file:src/test/resources/fixtures/entrance.html",
+    "mainTable": {
+        "selector": "table.product-list",
+        "hasHeader": false,
+        "columns": [
+            {
+                "key": "id",
+                "index": 0
+            },
+            {
+                "key": "name",
+                "index": 1,
+                "selector": "a"
+            },
+            {
+                "key": "price",
+                "index": -1
+            },
+            {
+                "key": "product",
+                "index": 1,
+                "isDetailLink": true
+            }
+        ]
+    },
+    "detailPage": {
+        "fields": [
+            {
+                "key": "description",
+                "selector": "div#description p"
+            },
+            {
+                "key": "manufacturer",
+                "selector": "dl.info dt:contains(Made by) + dd"
+            },
+            {
+                "key": "inStock",
+                "selector": "span.stock-status"
+            }
+        ],
+        "subTable": {
+            "selector": "table.specs",
+            "hasHeader": true,
+            "columns": [
+                {
+                    "key": "specName",
+                    "headerText": "Property"
+                },
+                {
+                    "key": "specValue",
+                    "headerText": "Value"
+                }
+            ]
+        }
+    },
+    "pagination": {
+        "nextButtonSelector": "nav.pagination a:contains('Next')",
+        "useHref": true
+    }
+}
