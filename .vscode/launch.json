@@ -6,6 +6,15 @@
     "configurations": [
         {
             "type": "java",
+            "name": "eba payment",
+            "request": "launch",
+            "mainClass": "com.example.scraping.Main",
+            "projectName": "configurable-scraper",
+            "args": "files/download-PSDMD-202511160800.json",
+            "vmArgs": "-Djdk.httpclient.HttpClient.log=errors,requests,headers,frames[:control:data:window:all],content,ssl,trace,channel,all"
+        },
+        {
+            "type": "java",
             "name": "bafin credit",
             "request": "launch",
             "mainClass": "com.example.scraping.Main",
