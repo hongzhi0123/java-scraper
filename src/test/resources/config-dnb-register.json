@@ -1,0 +1,39 @@
+{
+  "entranceUrl": "https://www.dnb.nl/en/public-register/?p=1&l=20",
+  "dynamic": true,
+  "dynamicConfig": {
+    "waitForSelector": "ul.register-search__results__list",
+    "timeout": 15000
+  },
+  "mainCard": {
+    "itemSelector": "article.register-result",
+    "fields": [
+      {
+        "key": "statutoryName",
+        "selector": "div.register-result__statutory-name .register-result__title a",
+        "optional": false
+      },
+      {
+        "key": "tradeName",
+        "selector": "div.register-result__trade-name .register-result__value",
+        "optional": true
+      },
+      {
+        "key": "register",
+        "selector": "div.register-result__register .register-result__value",
+        "optional": false
+      },
+      {
+        "key": "country",
+        "selector": "div.register-result__country .register-result__value",
+        "optional": false
+      }
+    ]
+  },
+  "pagination": {
+    "nextButtonSelector": "li.pagination__item--next-page button.pagination__link",
+    "useHref": false,
+    "urlPattern": "https://www.dnb.nl/en/public-register/?p={page}&l=20",
+    "activePageSelector": "li.pagination__item--is-active button.pagination__link"
+  }
+}

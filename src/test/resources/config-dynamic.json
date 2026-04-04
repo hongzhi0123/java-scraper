@@ -1,0 +1,17 @@
+{
+    "entranceUrl": "PLACEHOLDER",
+    "dynamic": true,
+    "dynamicConfig": {
+        "waitForSelector": "div.product-card",
+        "timeout": 15000
+    },
+    "mainCard": {
+        "itemSelector": "div.product-card",
+        "fields": [
+            { "key": "id",       "selector": "span.id" },
+            { "key": "name",     "selector": "h3.title a" },
+            { "key": "price",    "selector": "div.price" },
+            { "key": "category", "selector": "span.category", "optional": true }
+        ]
+    }
+}

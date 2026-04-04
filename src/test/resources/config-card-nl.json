@@ -1,0 +1,59 @@
+{
+  "entranceUrl": "https://www.dnb.nl/en/public-register/?p=1&l=20",
+  "dynamic": true,
+  "dynamicConfig": {
+    "waitForSelector": "h3 a[href*='information-detail']",
+    "timeout": 15000
+  },
+  "mainCard": {
+    "itemSelector": "div.register-search__results__list",
+    "fields": [
+      {
+        "key": "name",
+        "selector": "h3 a",
+        "isDetailLink": true
+      },
+      {
+        "key": "tradeName",
+        "selector": "div.register-result__trade-name p",
+        "optional": true
+      },
+      {
+        "key": "register",
+        "selector": "div.register-result__register p"
+      },
+      {
+        "key": "country",
+        "selector": "div.register-result__country p"
+      },
+      {
+        "key": "city",
+        "selector": "div.register-result__city p"
+      }
+    ]
+  },
+  "detailPage": {
+    "fields": [
+      {
+        "key": "statutoryName",
+        "selector": "⚠️ VERIFY — likely: dd or td next to 'Statutory name'"
+      },
+      {
+        "key": "statutorySeat",
+        "selector": "⚠️ VERIFY"
+      },
+      {
+        "key": "relationNumber",
+        "selector": "⚠️ VERIFY"
+      },
+      {
+        "key": "category",
+        "selector": "⚠️ VERIFY"
+      }
+    ]
+  },
+  "pagination": {
+    "nextButtonSelector": "⚠️ VERIFY — likely: a[aria-label='Next'], a.pagination__next, or a[rel='next']",
+    "useHref": true
+  }
+}

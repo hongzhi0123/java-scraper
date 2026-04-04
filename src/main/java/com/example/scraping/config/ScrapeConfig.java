@@ -11,4 +11,6 @@ public class ScrapeConfig {
     private PaginationDefinition pagination;
     private RateLimitConfig rateLimit;
     private CacheConfig cache;
+    private boolean dynamic;
+    private DynamicConfig dynamicConfig;
 }

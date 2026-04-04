@@ -14,6 +14,8 @@ public class PaginationHandler {
         String url;
         if (def.isUseHref()) {
             url = nextEl.attr("abs:href"); // JSoup resolves relative URLs if baseUri set
+        } else if (def.getUrlPattern() != null) {
+            url = computeFromUrlPattern(doc, def);
         } else {
             // Extendable: e.g., parse text like "Page 3"
             String text = nextEl.text().trim();
@@ -21,6 +23,19 @@ public class PaginationHandler {
         }
 
         return url.isEmpty() ? Optional.empty() : Optional.of(url);
+    }
+
+    private String computeFromUrlPattern(Document doc, PaginationDefinition def) {
+        int currentPage = 1;
+        if (def.getActivePageSelector() != null) {
+            Element activeEl = doc.selectFirst(def.getActivePageSelector());
+            if (activeEl != null) {
+                try {
+                    currentPage = Integer.parseInt(activeEl.text().trim());
+                } catch (NumberFormatException ignored) {}
+            }
+        }
+        return def.getUrlPattern().replace("{page}", String.valueOf(currentPage + 1));
     }
 
     private String computeFromText(String text, String baseUrl) {

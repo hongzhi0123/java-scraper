@@ -49,11 +49,26 @@
             <version>1.18.42</version>
         </dependency>
 
+        <!-- Playwright: headless browser for dynamic pages -->
+        <dependency>
+            <groupId>com.microsoft.playwright</groupId>
+            <artifactId>playwright</artifactId>
+            <version>1.49.0</version>
+        </dependency>
+
         <!-- Test -->
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter</artifactId>
             <version>5.10.2</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- WireMock: local HTTP server for dynamic-page tests -->
+        <dependency>
+            <groupId>org.wiremock</groupId>
+            <artifactId>wiremock-standalone</artifactId>
+            <version>3.9.1</version>
             <scope>test</scope>
         </dependency>
     </dependencies>

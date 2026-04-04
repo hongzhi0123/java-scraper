@@ -8,7 +8,7 @@ import com.example.scraping.config.RateLimitConfig;
 
 import java.io.IOException;
 
-public class CachedJsoup {
+public class CachedJsoup implements PageFetcher {
     private final ResponseCache cache;
     private RateLimitConfig config;
 
