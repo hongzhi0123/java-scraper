@@ -1,0 +1,25 @@
+{
+    "entranceUrl": "TODO: https://example.com/register",
+    "mainCard": {
+        "itemSelector": "TODO: div.item",
+        "fields": [
+            {
+                "key": "TODO: name",
+                "selector": "TODO: h3 a",
+                "optional": false
+            }
+        ]
+    },
+    "pagination": {
+        "nextButtonSelector": "TODO: a.next"
+    },
+    "rateLimit": {
+        "requestsPerMinute": 12,
+        "randomize": true
+    },
+    "cache": {
+        "enabled": true,
+        "ttlMinutes": 120,
+        "cacheDir": "target/test-cache"
+    }
+}
