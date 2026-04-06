@@ -1,0 +1,62 @@
+{
+    "entranceUrl": "TODO: https://example.com/register",
+    "dynamic": false,
+    "dynamicConfig": {
+        "waitForSelector": "TODO: table#data, div.card-container",
+        "timeout": 15000
+    },
+    "mainTable": {
+        "selector": "TODO: #data-table",
+        "hasHeader": true,
+        "columns": [
+            { "headerText": "TODO: Column Name", "key": "TODO: fieldName", "isDetailLink": false },
+            { "headerText": "TODO: Another Column", "key": "TODO: anotherField" }
+        ]
+    },
+    "mainCard": {
+        "itemSelector": "TODO: div.card",
+        "fields": [
+            { "key": "TODO: name", "selector": "TODO: h3.title", "optional": false },
+            { "key": "TODO: nameUrl", "selector": "TODO: h3.title a", "optional": false },
+            { "key": "TODO: status", "selector": "TODO: span.status", "optional": true }
+        ]
+    },
+    "detailPage": {
+        "fields": [
+            { "key": "TODO: address", "selector": "TODO: dl.info dd:nth-of-type(2)" },
+            { "key": "TODO: phone", "selector": "TODO: dl.info dd:nth-of-type(4)" }
+        ],
+        "subTable": {
+            "selector": "TODO: #permissions-table",
+            "hasHeader": true,
+            "rowFilter": {
+                "selector": "TODO: td:first-child img",
+                "attr": "TODO: alt",
+                "value": "TODO: Ticked activity",
+                "contains": false,
+                "not": false
+            },
+            "columns": [
+                { "index": 0, "key": "TODO: permission" },
+                { "index": 1, "key": "TODO: validFrom" }
+            ]
+        }
+    },
+    "pagination": {
+        "nextButtonSelector": "TODO: a.next",
+        "useHref": true,
+        "urlPattern": "TODO: https://site.com/list?page={page}",
+        "activePageSelector": "TODO: li.active a",
+        "baseUrl": "TODO: https://site.com"
+    },
+    "rateLimit": {
+        "requestsPerMinute": 12,
+        "randomize": true,
+        "respectRetryAfter": true
+    },
+    "cache": {
+        "enabled": true,
+        "ttlMinutes": 120,
+        "cacheDir": "target/test-cache"
+    }
+}
